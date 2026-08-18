@@ -35,12 +35,6 @@ jobs:
         run: |
           ruff check asreview/webapp
 
-      - name: Upload CIntent Artifacts
-        uses: actions/upload-artifact@v4
-        if: always()
-          name: ${{ env.CINTENT_ARTIFACT_NAME }}
-          path: ${{ env.CINTENT_LOGS }}
-
   compile-and-test:
     strategy:
       matrix:
@@ -80,9 +74,3 @@ jobs:
       - name: Test flask web app
         run: |
           pytest --random-order -n 6 asreview/webapp/tests
-
-      - name: Upload CIntent Artifacts
-        uses: actions/upload-artifact@v4
-        if: always()
-          name: ${{ env.CINTENT_ARTIFACT_NAME }}
-          path: ${{ env.CINTENT_LOGS }}
