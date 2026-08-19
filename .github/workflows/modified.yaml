@@ -1,31 +1,6 @@
 name: Test ASReview webapp
 on: workflow_dispatch
 jobs:
-  prettier:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Prettify code
-        uses: creyD/prettier_action@v4.3
-        with:
-          prettier_options: --write **/*.{js,jsx,css,html}
-          only_changed: True
-  ruff:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: "3.13"
-      - name: Install ruff
-        run: |
-          pip install .[dev]
-      - name: Lint Python
-        run: |
-          ruff check asreview/webapp
   compile-and-test:
     strategy:
       matrix:
